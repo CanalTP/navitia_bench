@@ -13,11 +13,13 @@ def move_lat_long(latitude, longitude, distance, bearing):
         longitude2 = longitude + math.atan2( math.sin(bearing) * math.sin(d) * math.cos(latitude), math.cos(d) - math.sin(latitude) * math.sin(latitude2) )
         return convert_to_degrees(latitude2), convert_to_degrees(longitude2)
 
+
 def convert_to_degrees(number):
-        return (float(number) * (180/math.pi))
+        return float(number) * (180/math.pi)
+
 
 def convert_to_radians(number):
-        return (float(number) * (math.pi/180))
+        return float(number) * (math.pi/180)
 
 
 class Places:

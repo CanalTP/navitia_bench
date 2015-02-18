@@ -7,8 +7,8 @@ if os.environ.get('CONFIG_FILE'):
 else:
     import settings as conf
 
+s = Server(conf.URL, conf.TOKEN)
 
-s = Server('https://api.navitia.io', conf.TOKEN)
 for region in s.regions.itervalues():
     for i in range(0, 100):
         print "success" if region.journeys.get_random().status_code == 200 else "failed"
