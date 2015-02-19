@@ -12,17 +12,14 @@ else:
 
 
 @contextmanager
-def time_that(trans, timer_name, instance=None):
+def time_that(trans, timer_name):
     """
     measure time of all work done under the 'with'
     """
     start_time = time.time()
     yield
     elapsed_time = time.time() - start_time
-    if instance:
-        trans.custom_timers[timer_name][instance] = elapsed_time
-    else:
-        trans.custom_timers[timer_name] = elapsed_time
+    trans.custom_timers[timer_name] = elapsed_time
 
 
 class Transaction(object):
