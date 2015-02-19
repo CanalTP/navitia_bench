@@ -16,10 +16,10 @@ def time_that(trans, timer_name):
     """
     measure time of all work done under the 'with'
     """
-    start_time = time.time()
+    # start_time = time.time()
     yield
-    elapsed_time = time.time() - start_time
-    trans.custom_timers[timer_name] = elapsed_time
+    # elapsed_time = time.time() - start_time
+    # trans.custom_timers[timer_name] = elapsed_time
 
 
 class Transaction(object):
@@ -27,6 +27,7 @@ class Transaction(object):
         self.api = Server(conf.URL, conf.TOKEN)
 
     def run(self):
+
 
         for r in self.api.regions.itervalues():
             with time_that(self, 'journeys_' + r.id_):
