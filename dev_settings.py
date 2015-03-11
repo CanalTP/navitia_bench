@@ -1,4 +1,6 @@
-
-TOKEN='da821360-5fdc-47cb-acc3-9025e56fd711'
-
-URL='http://navitia2-ws.ctp.dev.canaltp.fr'
+TOKEN=''
+URL='localhost'
+PORT='5000'
+JMX_SCRIPT='/home/vincent/benchmarks.jmx'
+RESULT_FILE='/tmp/results.csv'
+SOURCE_FILE='/tmp/source.csv'
