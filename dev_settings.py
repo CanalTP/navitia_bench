@@ -1,6 +1,6 @@
 TOKEN=''
 URL='localhost'
 PORT='5000'
-JMX_SCRIPT='/home/vincent/benchmarks.jmx'
-RESULT_FILE='/tmp/results.csv'
+JMX_SCRIPT='/root/benchmarks.jmx'
+RESULT_FILE='/root/results.jtl'
 SOURCE_FILE='/tmp/source.csv'
