@@ -9,7 +9,7 @@ else:
 
 s = Server(conf.URL, conf.TOKEN)
 
-with open('source.csv', 'wb') as csvfile:
+with open(conf.RESULT_FILE, 'wb') as csvfile:
     writer = csv.writer(csvfile, delimiter=',')
     for region in s.regions.itervalues():
         for i in xrange(1000):
