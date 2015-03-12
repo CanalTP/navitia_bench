@@ -20,10 +20,10 @@ for region in s.regions.itervalues():
         for i in xrange(conf.NB_REQUESTS_PER_REGION):
             writer.writerow(region.journeys.make_random_request())
     result_file = os.path.join(path, "journeys.jtl")
-    l = ["-n", "-t", conf.JMX_SCRIPT, "-Jjourneys_results",
-        result_file, "-Jjourneys_dataset", fname, "-Jserver_url",
-        conf.URL, "-Jserver_port", conf.PORT, "-Jserver_key", conf.TOKEN,
-        "-Jregion_name", str(region)]
+    l = ["/usr/share/jmeter/bin/jmeter", "-n", "-t", conf.JMX_SCRIPT,
+            "-Jjourneys_results", result_file, "-Jjourneys_dataset", fname,
+            "-Jserver_url", conf.URL, "-Jserver_port", conf.PORT,
+            "-Jserver_key", conf.TOKEN, "-Jregion_name", str(region)]
     print l
-    os.execv("/usr/share/jmeter/bin/jmeter", l)
+    os.execv("sh", l)
 
