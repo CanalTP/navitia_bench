@@ -18,3 +18,9 @@ class Region:
 
     def query(self, q):
         return self.server.query('v1/coverage/{}/{}'.format(self.id_, q))
+
+    def __repr__(self):
+        return self.id_
+
+    def __str__(self):
+        return self.__repr__()
