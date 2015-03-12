@@ -19,9 +19,9 @@ for region in s.regions.itervalues():
     source_fname = os.path.join(path, fname)
     print source_fname
     with open(source_fname, 'wb') as csvfile:
-        with csv.writer(csvfile, delimiter=',') as writer:
-            for i in xrange(conf.NB_REQUESTS_PER_REGION):
-                writer.writerow(region.journeys.make_random_request())
+        writer = csv.writer(csvfile, delimiter=',')
+        for i in xrange(conf.NB_REQUESTS_PER_REGION):
+            writer.writerow(region.journeys.make_random_request())
     result_file = "journeys_{}.jtl".format(str(region))
     l = ["-n", "-t", conf.JMX_SCRIPT,
             "-Jjourneys_results", result_file, "-Jjourneys_dataset", source_fname,
