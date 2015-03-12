@@ -4,7 +4,7 @@ from region import Region
 
 class Server:
     def __init__(self, host, token):
-        self.host = host
+        self.host = host if host[:7] == "http" else "http://{}".format(host)
         self.token = token
         self.regions = {}
         self.set_regions()
