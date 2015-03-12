@@ -5,3 +5,4 @@ PORT='80'
 BASE_DIR = '/var/lib/jenkins/jobs/bench_navitia_dev'
 JMX_SCRIPT= os.path.join(BASE_DIR, 'benchmark.jmx')
 NB_REQUESTS_PER_REGION=10
+JMETER_EXEC="/usr/local/src/apache-jmeter-2.12/bin/jmeter.sh"
