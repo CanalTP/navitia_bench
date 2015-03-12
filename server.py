@@ -26,3 +26,4 @@ class Server:
                 self.regions[r_id] = Region(self, r_id,
                                             region['start_production_date'],
                                             region['end_production_date'])
+                print "region {} is has been set".format(r_id)
