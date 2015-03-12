@@ -14,7 +14,8 @@ print os.environ
 for region in s.regions.itervalues():
     print "Begin to benchmark {}".format(str(region))
     fname = "source_{}.csv".format(region)
-    path = os.getcwd()
+    path = os.path.join(os.environ['JENKINS_HOME'], 'jobs', os.environ['JOB_NAME'],
+            'builds', os.environ['BUILD_ID'])
     source_fname = os.path.join(path, fname)
     print source_fname
     with open(source_fname, 'wb') as csvfile:
