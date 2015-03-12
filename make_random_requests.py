@@ -11,6 +11,7 @@ else:
 s = Server(conf.URL, conf.TOKEN)
 
 for region in s.regions.itervalues():
+    print "Begin to benchmark {}".format(str(region))
     path = os.path.join(conf.BASE_DIR, "benchmarks", str(region))
     if not os.path.exists(path):
         os.execv("/bin/mkdir", ["-p", path])
@@ -20,10 +21,9 @@ for region in s.regions.itervalues():
         for i in xrange(conf.NB_REQUESTS_PER_REGION):
             writer.writerow(region.journeys.make_random_request())
     result_file = os.path.join(path, "journeys.jtl")
-    l = [conf.JMETER_EXEC, "-n", "-t", conf.JMX_SCRIPT,
+    l = ["-n", "-t", conf.JMX_SCRIPT,
             "-Jjourneys_results", result_file, "-Jjourneys_dataset", fname,
             "-Jserver_url", conf.URL, "-Jserver_port", conf.PORT,
             "-Jserver_key", conf.TOKEN, "-Jregion_name", str(region)]
-    print l
-    os.execv("/bin/sh", l)
-
+    os.system("sh {} {}".format(conf.JMETER_EXEC, " ".join(l)))
+    print "Finished to benchmark {}".format(str(region))
