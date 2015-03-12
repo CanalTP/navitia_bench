@@ -9,6 +9,7 @@ else:
     import settings as conf
 
 s = Server(conf.URL, conf.TOKEN)
+print os.environ
 
 for region in s.regions.itervalues():
     print "Begin to benchmark {}".format(str(region))
