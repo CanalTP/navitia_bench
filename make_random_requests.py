@@ -14,7 +14,7 @@ for region in s.regions.itervalues():
     path = os.path.join(conf.BASE_DIR, "benchmarks", str(region))
     if not os.path.exists(path):
         os.execv("/bin/mkdir", ["-p", path])
-    fname = "source_{}.csv".format(datetime.now().strftime("%x_%X"))
+    fname = "source_{}.csv".format(datetime.now().isoformat())
     with open(os.path.join(path, fname), 'wb') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         for i in xrange(conf.NB_REQUESTS_PER_REGION):
