@@ -16,7 +16,7 @@ for region in s.regions.itervalues():
     fname = "source_{}.csv".format(datetime.now().strftime("%x_%X"))
     with open(os.path.join(path, fname, 'wb') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
-        for i in xrange(1000):
+        for i in xrange(conf.NB_REQUESTS_PER_REGION):
             writer.writerow(region.journeys.make_random_request())
     result_file = os.path.join(path, "journeys.jtl")
     l = ["-n", "-t", conf.JMX_SCRIPT, "-Jjourneys_results",
