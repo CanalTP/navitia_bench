@@ -1,6 +1,7 @@
 from server import Server
 from stop_areas import StopAreas
 import os, csv
+from datetime import datetime
 
 if os.environ.get('CONFIG_FILE'):
     conf = __import__(os.environ.get('CONFIG_FILE'))
@@ -9,8 +10,19 @@ else:
 
 s = Server(conf.URL, conf.TOKEN)
 
-with open(conf.RESULT_FILE, 'wb') as csvfile:
-    writer = csv.writer(csvfile, delimiter=',')
-    for region in s.regions.itervalues():
+for region in s.regions.itervalues():
+    path = os.path.join(conf.BASE_DIR, "benchmarks", region)
+    os.execv("/bin/mkdir", ["-p", path])
+    fname = "source_{}.csv".format(datetime.now().strftime("%x_%X"))
+    with open(os.path.join(path, fname, 'wb') as csvfile:
+        writer = csv.writer(csvfile, delimiter=',')
         for i in xrange(1000):
             writer.writerow(region.journeys.make_random_request())
+    result_file = os.path.join(path, "journeys.jtl")
+    l = ["-n", "-t", conf.JMX_SCRIPT, "-Jjourneys_results",
+        result_file, "-Jjourneys_dataset", fname, "-Jserver_url",
+        conf.URL, "-Jserver_port", conf.PORT, "-Jserver_key", conf.TOKEN,
+        "-Jregion_name", region]
+    print l
+    os.execv("/usr/bin/jmeter", l)
+
