@@ -9,7 +9,6 @@ else:
     import settings as conf
 
 s = Server(conf.URL, conf.TOKEN)
-print os.environ
 
 for region in s.regions.itervalues():
     print "Begin to benchmark {}".format(str(region))
@@ -17,7 +16,6 @@ for region in s.regions.itervalues():
     path = os.path.join(os.environ['JENKINS_HOME'], 'jobs', os.environ['JOB_NAME'],
             'builds', os.environ['BUILD_ID'])
     source_fname = os.path.join(path, fname)
-    print source_fname
     with open(source_fname, 'wb') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         for i in xrange(conf.NB_REQUESTS_PER_REGION):
