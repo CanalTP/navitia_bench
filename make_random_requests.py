@@ -12,7 +12,8 @@ s = Server(conf.URL, conf.TOKEN)
 
 for region in s.regions.itervalues():
     path = os.path.join(conf.BASE_DIR, "benchmarks", str(region))
-    os.execv("/bin/mkdir", ["-p", path])
+    if not os.path.exists(path):
+        os.execv("/bin/mkdir", ["-p", path])
     fname = "source_{}.csv".format(datetime.now().strftime("%x_%X"))
     with open(os.path.join(path, fname, 'wb')) as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
