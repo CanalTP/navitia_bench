@@ -12,15 +12,12 @@ s = Server(conf.URL, conf.TOKEN)
 
 for region in s.regions.itervalues():
     print "Begin to benchmark {}".format(str(region))
-    path = os.path.join(conf.BASE_DIR, "benchmarks", str(region))
-    if not os.path.exists(path):
-        os.execv("/bin/mkdir", ["-p", path])
-    fname = "source_{}.csv".format(datetime.now().isoformat())
+    fname = "source_{}.csv".format(region)
     with open(os.path.join(path, fname), 'wb') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         for i in xrange(conf.NB_REQUESTS_PER_REGION):
             writer.writerow(region.journeys.make_random_request())
-    result_file = os.path.join(path, "journeys.jtl")
+    result_file = "journeys_{}.jtl".format(str(region))
     l = ["-n", "-t", conf.JMX_SCRIPT,
             "-Jjourneys_results", result_file, "-Jjourneys_dataset", fname,
             "-Jserver_url", conf.URL, "-Jserver_port", conf.PORT,
