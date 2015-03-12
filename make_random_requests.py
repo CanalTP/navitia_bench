@@ -25,5 +25,5 @@ for region in s.regions.itervalues():
             "-Jserver_url", conf.URL, "-Jserver_port", conf.PORT,
             "-Jserver_key", conf.TOKEN, "-Jregion_name", str(region)]
     print l
-    os.execv("sh", l)
+    os.execv("/bin/sh", l)
 
