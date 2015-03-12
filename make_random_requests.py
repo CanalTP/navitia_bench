@@ -25,5 +25,5 @@ for region in s.regions.itervalues():
         conf.URL, "-Jserver_port", conf.PORT, "-Jserver_key", conf.TOKEN,
         "-Jregion_name", str(region)]
     print l
-    os.execv("/usr/bin/jmeter", l)
+    os.execv("/usr/share/jmeter/bin/jmeter", l)
 
