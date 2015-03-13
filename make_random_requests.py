@@ -24,6 +24,7 @@ for region in s.regions.itervalues():
     l = ["-n", "-t", conf.JMX_SCRIPT,
             "-Jjourneys_results", result_file, "-Jjourneys_dataset", source_fname,
             "-Jserver_url", conf.URL, "-Jserver_port", conf.PORT,
-            "-Jserver_key", conf.TOKEN, "-Jregion_name", str(region)]
+            "-Jserver_key", conf.TOKEN, "-Jregion_name", str(region),
+            "-Jnb_iterations", str(conf.NB_REQUESTS_PER_REGION)]
     os.system("sh {} {}".format(conf.JMETER_EXEC, " ".join(l)))
     print "Finished to benchmark {}".format(str(region))
